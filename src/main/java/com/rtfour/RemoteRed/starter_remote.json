@@ -1,0 +1,5 @@
+{
+  "url_": "jdbc:postgresql://localhost/postgres",
+  "user_": "postgres",
+  "password_": "root"
+}

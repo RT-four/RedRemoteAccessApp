@@ -10,19 +10,24 @@ import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import com.rtfour.RemoteRed.*;
 
 @Controller
 public class RemoteController {
+
+    static String port = "8181";
+
     @GetMapping("/")
     public String main() {
         return "main";
     }
 
     @PostMapping("/")
-    public String handlePassword(@RequestParam("password") String password,
+    public String handlePassword(@RequestParam("password") String password, @RequestParam("ip") String ip,
                                  RedirectAttributes redirectAttributes) throws SQLException, IOException, NoSuchAlgorithmException, NoSuchPaddingException, ClassNotFoundException {
-        String port = "4907";
-        new Start().initialize("192.168.1.111", Integer.parseInt(port));
+        if(new conn_establish().findInBD(ip, password)){
+            new Start().initialize(ip, Integer.parseInt(port), password);
+        }
         return "main";
     }
 

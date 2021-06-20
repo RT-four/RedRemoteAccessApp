@@ -21,10 +21,7 @@ public class RemoteRedApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        SwingUtilities.invokeLater(() -> {
-            JFrame frame = new JFrame();
-            frame.setVisible(true);
-        });
+
     }
 
 }

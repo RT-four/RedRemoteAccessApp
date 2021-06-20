@@ -14,7 +14,7 @@ import java.io.IOException;
 
 import java.net.Socket;
 
-class Authenticate extends JFrame implements ActionListener {
+class Authenticate extends JFrame {
     private Socket cSocket = null;
     DataOutputStream psswrchk = null;
     DataInputStream verification = null;
@@ -23,35 +23,10 @@ class Authenticate extends JFrame implements ActionListener {
     JPanel panel;
     JLabel label, label1;
     String width = "", height = "";
-    final JTextField text1;
 
-    Authenticate(Socket cSocket) {
-        label1 = new JLabel();
-        label1.setText("Password");
-        text1 = new JTextField(15);
+    Authenticate(Socket cSocket, String ip, String password) {
         this.cSocket = cSocket;
-
-        label = new JLabel();
-        label.setText("");
-        this.setLayout(new BorderLayout());
-
-        SUBMIT = new JButton("SUBMIT");
-
-        panel = new JPanel(new GridLayout(2, 1));
-        panel.add(label1);
-        panel.add(text1);
-        panel.add(label);
-        panel.add(SUBMIT);
-        add(panel, BorderLayout.CENTER);
-        SUBMIT.addActionListener(this);
-        setTitle("LOGIN FORM");
-    }
-
-
-    public void actionPerformed(ActionEvent ae) {
-
-
-        String value1 = text1.getText();
+        String value1 = password;
 
         try {
             psswrchk = new DataOutputStream(cSocket.getOutputStream());
@@ -78,6 +53,13 @@ class Authenticate extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(this, "Incorrect  password", "Error", JOptionPane.ERROR_MESSAGE);
             dispose();
         }
+    }
+
+
+    public void actionPerformed(ActionEvent ae) {
+
+
+
 
     }
 
