@@ -31,14 +31,11 @@
 
 <main class="form-signin">
 
-    <form method="POST" action="/clientConnection">
-        <img class="main-image" src="images/remote_access.png">
-        <input type="text" class="form-control form-control-custom" id="ip" required="required" placeholder="IP"
-               name="ip">
-        <input type="text" class="form-control form-control-custom" id="password" required="required"
-               placeholder="Пароль"
-               name="password">
-        <button class="w-100 btn btn-lg btn-primary form-control-custom" type="submit" value="Log">Подключиться</button>
+    <form method="POST" action="/client">
+        <button class="w-100 btn btn-lg btn-primary form-control-custom" type="submit" value="Log">Подключиться к УМ</button>
+    </form>
+    <form method="POST" action="/server">
+        <button class="w-100 btn btn-lg btn-primary form-control-custom" type="submit" value="Log">Создать подключение к УМ</button>
     </form>
 </main>
 

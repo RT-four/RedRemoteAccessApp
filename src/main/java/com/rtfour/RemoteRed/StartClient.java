@@ -3,14 +3,14 @@ package com.rtfour.RemoteRed;
 import javax.swing.*;
 import java.net.Socket;
 
-public class Start {
+public class StartClient {
 
     static String port = "8181";
 
     public static void main(String args[]) {
         String ip = JOptionPane.showInputDialog("Please enter server ip");
         String password = JOptionPane.showInputDialog("Please enter server ip");
-        new Start().initialize(ip, Integer.parseInt(port), password);
+        new StartClient().initialize(ip, Integer.parseInt(port), password);
     }
 
     public void initialize(String ip, int port, String password) {

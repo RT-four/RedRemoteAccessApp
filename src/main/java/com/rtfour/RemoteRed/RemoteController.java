@@ -10,7 +10,6 @@ import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
-import com.rtfour.RemoteRed.*;
 
 @Controller
 public class RemoteController {
@@ -19,16 +18,30 @@ public class RemoteController {
 
     @GetMapping("/")
     public String main() {
-        return "main";
+        return "choice";
     }
 
-    @PostMapping("/")
-    public String handlePassword(@RequestParam("password") String password, @RequestParam("ip") String ip,
+    @PostMapping("/clientConnection")
+    public String handleData(@RequestParam("password") String password, @RequestParam("ip") String ip,
                                  RedirectAttributes redirectAttributes) throws SQLException, IOException, NoSuchAlgorithmException, NoSuchPaddingException, ClassNotFoundException {
         if(new conn_establish().findInBD(ip, password)){
-            new Start().initialize(ip, Integer.parseInt(port), password);
+            new StartClient().initialize(ip, Integer.parseInt(port), password);
         }
         return "main";
+    }
+    @PostMapping("/serverCreating")
+    public String handlePassword(@RequestParam("password") String password,
+                                 RedirectAttributes redirectAttributes) throws SQLException, IOException, NoSuchAlgorithmException, NoSuchPaddingException, ClassNotFoundException {
+        new StartServer().start(password);
+        return "main";
+    }
+    @PostMapping("/client")
+    public String loadClient() throws SQLException, IOException, NoSuchAlgorithmException, NoSuchPaddingException, ClassNotFoundException {
+        return "main";
+    }
+    @PostMapping("/server")
+    public String loadServer() throws SQLException, IOException, NoSuchAlgorithmException, NoSuchPaddingException, ClassNotFoundException {
+        return "createConnection";
     }
 
 }
